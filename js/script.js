@@ -15,35 +15,56 @@ class Person {
 
 class Employee extends Person {
 
-    #salary = 2314;
+    #salary = 0;
 
-    constructor (firstName, lastName, age, birthDayDate, jobPosition,) {
-        super (firstName, lastName, age, birthDayDate);
+    constructor (firstName, lastName, age, birthDayDate, jobPosition, salary) {
+        super (firstName, lastName, age, birthDayDate,);
         this.jobPosition = jobPosition;
+        this.#salary = salary;
     }
 
     getYerSalary () {
         return this.#salary * 12;
     }
 
-    celebrate () {
-        let day = new Date(this.birthDayDate);
-        let dayOfWeek = day.getDay();
-        if (dayOfWeek === 0 || dayOfWeek === 6) {
+    celebrate () {        
+        if (isWeekend(this.birthDayDate) === getYear(this.birthDayDate)){
             return 'Happy Birthday, let’s celebrate';
         } else {
-            return 'Happy Birthday, but I need to work';
+            return 'Happy Birthday, but I need to work'
         }
     }
 }
 
-const employee = new Employee ('Mike', 'Vakovski', 25, '2022-08-14', 'Maneger');
+
+const employee = new Employee ('Mike', 'Vakovski', 25, '2022-08-21', 'Maneger', 2311);
 
 console.log(employee);
 console.log(employee.getYerSalary());
 console.log(employee.celebrate());
 
-const person = new Person ('Bob', 'Marli', 11,'2022-03-15');
+const person = new Person ('Bob', 'Marli', 11,'2022-08-18');
 
 console.log(person);
 console.log(person.celebrate());
+
+
+function isWeekend (date) {
+    let day = new Date(date);
+    let dayOfWeek = day.getDay();
+    return dayOfWeek === 0 || dayOfWeek === 6;
+}
+
+function getYear (year) {
+    let nowDate = new Date().getFullYear();
+    let date = new Date(year).getFullYear();
+    let currentDate = date;
+
+    return currentDate === nowDate;
+}
+
+// console.log(getYear('2020-10-10'));
+
+
+// спасибо за подсказку, но я решил не использувать твое решегие, а сделать свое )
+    // надеюсь мое решение имеет право на жизнь )
