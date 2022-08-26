@@ -9,6 +9,8 @@ class Person {
     }
 
     celebrate () {
+        const date = new Date(this.birthday);
+        date.setFullYear(new Date().getFullYear());
         return 'Happy Birthday, let’s celebrate';
     }
 }
@@ -27,17 +29,23 @@ class Employee extends Person {
         return this.#salary * 12;
     }
 
-    celebrate () {        
-        if (isWeekend(this.birthDayDate) === getYear(this.birthDayDate)){
+    celebrate() {
+        super.celebrate()
+        if (isWeekend(this.birthDayDate)) {
             return 'Happy Birthday, let’s celebrate';
-        } else {
-            return 'Happy Birthday, but I need to work'
+        }   else {
+                return 'Happy Birthday, but I need to work'
         }
+    //     if (isWeekend(this.birthDayDate) === getYear(this.birthDayDate)){
+    //         return 'Happy Birthday, let’s celebrate';
+    //     } else {
+    //         return 'Happy Birthday, but I need to work'
+    //     }
     }
 }
 
 
-const employee = new Employee ('Mike', 'Vakovski', 25, '2022-08-21', 'Maneger', 2311);
+const employee = new Employee ('Mike', 'Vakovski', 25, '1901-08-24', 'Maneger', 2311);
 
 console.log(employee);
 console.log(employee.getYerSalary());
@@ -55,13 +63,13 @@ function isWeekend (date) {
     return dayOfWeek === 0 || dayOfWeek === 6;
 }
 
-function getYear (year) {
-    let nowDate = new Date().getFullYear();
-    let date = new Date(year).getFullYear();
-    let currentDate = date;
+// function getYear (year) {
+//     let nowDate = new Date().getFullYear();
+//     let date = new Date(year).getFullYear();
+//     let currentDate = date;
 
-    return currentDate === nowDate;
-}
+//     return currentDate === nowDate;
+// }
 
 // console.log(getYear('2020-10-10'));
 
