@@ -9,8 +9,6 @@ class Person {
     }
 
     celebrate () {
-        const date = new Date(this.birthday);
-        date.setFullYear(new Date().getFullYear());
         return 'Happy Birthday, let’s celebrate';
     }
 }
@@ -30,11 +28,13 @@ class Employee extends Person {
     }
 
     celebrate() {
-        super.celebrate()
+        const date = new Date(this.birthday);
+        date.setFullYear(new Date().getFullYear());
+        
         if (isWeekend(this.birthDayDate)) {
-            return 'Happy Birthday, let’s celebrate';
+            return super.celebrate();
         }   else {
-                return 'Happy Birthday, but I need to work'
+                return 'Happy Birthday, but I need to work';
         }
     //     if (isWeekend(this.birthDayDate) === getYear(this.birthDayDate)){
     //         return 'Happy Birthday, let’s celebrate';
